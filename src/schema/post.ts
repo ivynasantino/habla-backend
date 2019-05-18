@@ -47,7 +47,7 @@ export const PostTypeDef = `
     voteCount: Int!
     profilePostVote: PostVote
     photoURL: String
-    profileFollowPost: ProfileFollowPost
+    postFollowers: [Profile!]!
   }
 `;
 
@@ -105,8 +105,11 @@ export const PostResolvers = {
     profilePostVote: async (post: Post, args, context) => {
       return await ProfileVotePost.findOne({ postId: post.id, profileUid: context.user.uid });
     },
-    profileFollowPost:async (post: Post, args, context) => {
-      return await ProfileFollowPost.findOne({ postId: post.id, profileUid: context.user.uid });
+    postFollowers: async (post: Post) => {
+      return await Post.createQueryBuilder()
+        .relation(Post, "postFollowers")
+        .of(post)
+        .loadMany();
     }
   },
   Mutation: {

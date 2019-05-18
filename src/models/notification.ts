@@ -37,7 +37,8 @@ export class Notification extends BaseEntity {
 }
 
 export enum CommentNotificationType {
-    COMMENT_ON_OWNED_POST = 'COMMENT_ON_OWNED_POST'
+    COMMENT_ON_OWNED_POST = 'COMMENT_ON_OWNED_POST',
+    COMMENT_ON_THIRD_PARTY_POST = 'COMMENT_ON_THIRD_PARTY_POST'
 }
 
 export enum VoteNotificationType {

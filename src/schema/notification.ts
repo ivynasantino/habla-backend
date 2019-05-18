@@ -5,11 +5,9 @@ export const NotificationTypeDef = `
   extend type Query {
     notifications: [Notification!]!
   }
-
   extend type Mutation {
     setNotificationsAsRead(notificationIds: [ID!]!): Boolean!
   }
-
   type Notification {
     id: ID!
     type: NotificationType!
@@ -18,10 +16,10 @@ export const NotificationTypeDef = `
     comment: Comment
     updatedAt: Date!
   }
-
   enum NotificationType {
     ${CommentNotificationType.COMMENT_ON_OWNED_POST}
     ${VoteNotificationType.VOTE_ON_OWNED_POST}
+    ${CommentNotificationType.COMMENT_ON_THIRD_PARTY_POST}
   }
 `;
 
